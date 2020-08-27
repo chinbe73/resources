@@ -1,0 +1,6 @@
+image:
+  file: setup/Dockerfile
+
+tasks:
+  - init: echo 'init script'
+    command: . setup/start.sh
