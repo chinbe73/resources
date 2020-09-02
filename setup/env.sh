@@ -13,5 +13,5 @@ source <(kubectl completion bash)
 alias k='kubectl'
 complete -F __start_kubectl k
 alias kset='kubectl config set-context --current'
-function ksetns () { kset --namespace=$1; }
-alias a="argocd --port-forward"
+function ns () { kset --namespace=$1; }
+alias a="argocd --port-forward --port-forward-namespace argocd"
