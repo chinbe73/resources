@@ -1,0 +1,6 @@
+[submodule "sample-app-deployment"]
+	path = sample-app-deployment
+	url = https://github.com/chinbe73/sample-app-deployment.git
+[submodule "environment-default-dev"]
+	path = environment-default-dev
+	url = https://github.com/chinbe73/jenkins-x-boot-config

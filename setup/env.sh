@@ -14,4 +14,5 @@ alias k='kubectl'
 complete -F __start_kubectl k
 alias kset='kubectl config set-context --current'
 function ns () { kset --namespace=$1; }
-alias a="argocd --port-forward --port-forward-namespace argocd"
+export ARGOCD_OPTS='--port-forward-namespace argocd'
+alias a="argocd"
