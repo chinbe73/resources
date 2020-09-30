@@ -1,10 +1,12 @@
 #!/bin/sh
-NAME=gitops
-IP=$(multipass exec $NAME -- ip addr | grep eth0$ | sed 's/^ .* inet \(.*\)\/.*$/\1/')
+. $(dirname $0)/set_env.sh
+IP=$(multipass exec $MP_HOST -- ip addr | grep -E "(eth0|enp0s8)$" | sed 's/^ .* inet \(.*\)\/.*$/\1/')
 echo IP: $IP
 echo Update C:\\Windows\\System32\\drivers\\etc\\hosts
 echo '#########################'
-echo $IP $NAME
-echo $IP demo.info
-echo $IP argocd.info
+if [ "$USERDOMAIN" == "VISANA" ]; then
+    echo $IP $MP_HOST $MP_HOST.visana.intra demo.info argocd
+else
+    echo $IP demo.info argocd
+fi
 echo '#########################'

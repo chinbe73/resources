@@ -1,0 +1,2 @@
+MP_HOST=gitops
+MP_IP=192.168.56.102

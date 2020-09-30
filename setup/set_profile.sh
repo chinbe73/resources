@@ -9,7 +9,7 @@ alias gs="git status"
 alias gd="git diff"
 
 #https://kubernetes.io/de/docs/reference/kubectl/cheatsheet/
-source <(kubectl completion bash)
+. <(kubectl completion bash)
 alias k='kubectl'
 complete -F __start_kubectl k
 alias kset='kubectl config set-context --current'

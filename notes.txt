@@ -1,5 +1,16 @@
+kns argocd
+cat setup/resources/*.crt > sslcerts.pem
+k create configmap sslcerts --from-file=sslcerts.pem
+rm sslcerts.pem
+k patch deploy/argocd-server -p "$(sed 's/CONTAINER_NAME/argocd-server/' setup/resources/patch_proxy.yaml)"
+k patch deploy/argocd-repo-server -p "$(sed 's/CONTAINER_NAME/argocd-repo-server/' setup/resources/patch_proxy.yaml)"
+
+k create ns gitops
 a app create sample-app \
 --repo https://github.com/chinbe73/sample-app-deployment \
 --path . \
 --dest-server https://kubernetes.default.svc \
---dest-namespace default
+--dest-namespace gitops
+
+k exec -it deploy/argocd-server -- bash
+k logs deploy/argocd-server -f

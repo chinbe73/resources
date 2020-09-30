@@ -1,0 +1,20 @@
+spec:
+  template:
+    spec:
+      containers:
+      - name: CONTAINER_NAME
+        env: 
+        - name: http_proxy
+          value: http://www-proxy.visana.ch:8080
+        - name: https_proxy
+          value: http://www-proxy.visana.ch:8080
+        - name: no_proxy
+          value: localhost,127.0.0.1,.visana.ch,.visana.intra,10.43.0.1/16,argocd-repo-server
+        volumeMounts:
+          - name: sslcerts
+            mountPath: /etc/ssl/certs/sslcerts.pem
+            subPath: sslcerts.pem
+      volumes:
+      - name: sslcerts
+        configMap:
+          name: sslcerts

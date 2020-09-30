@@ -16,5 +16,5 @@ RUN set -x; \
     kubectl krew install ingress-nginx && \
     echo '. /home/gitpod/google-cloud-sdk/path.bash.inc' >> ~/.bashrc && \
     echo '. /home/gitpod/google-cloud-sdk/completion.bash.inc' >> ~/.bashrc && \
-    echo '. /workspace/resources/setup/env.sh' >> ~/.bashrc && \
+    echo '. /workspace/resources/setup/set_profile.sh' >> ~/.bashrc && \
     echo 'export PATH="'$HOME'/.krew/bin:$PATH"' >> ~/.bashrc
