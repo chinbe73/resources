@@ -1,5 +1,5 @@
 #!/bin/sh
-. $(dirname $0)/set_env.sh
+. $(dirname $0)/set_env.sh.inc
 multipass launch --name $MP_HOST --cpus 4 --mem 6g --disk 100g
 multipass start $MP_HOST
 if [ "$USERDOMAIN" == "VISANA" ]; then
