@@ -8,7 +8,6 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: argocd-server-ingress
-  namespace: argocd
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"

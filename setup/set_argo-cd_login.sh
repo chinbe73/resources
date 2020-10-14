@@ -12,7 +12,8 @@ done
 kubectl -n argocd get deploy
 argocd --port-forward --port-forward-namespace argocd login --username admin --password $ADMIN_PASSWORD
 if [ $? -ne 0 ]; then
-    argocd --port-forward --port-forward-namespace argocd login --username admin --password $(kubectl get pods -n argocd -l app.kubernetes.io/name=argocd-server -o name | cut -d'/' -f 2)
-    argocd --port-forward --port-forward-namespace argocd account update-password --current-password $(kubectl get pods -n argocd -l app.kubernetes.io/name=argocd-server -o name | cut -d'/' -f 2) --new-password $ADMIN_PASSWORD
-    argocd --port-forward --port-forward-namespace argocd login --username admin --password admin
+    INITIAL_ADMIN_PASSWORD=$(kubectl get pods -n argocd -l app.kubernetes.io/name=argocd-server -o name | cut -d'/' -f 2)
+    argocd --port-forward --port-forward-namespace argocd login --username admin --password $INITIAL_ADMIN_PASSWORD
+    argocd --port-forward --port-forward-namespace argocd account update-password --current-password $INITIAL_ADMIN_PASSWORD --new-password $ADMIN_PASSWORD
+    argocd --port-forward --port-forward-namespace argocd login --username admin --password $ADMIN_PASSWORD
 fi
