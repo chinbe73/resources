@@ -12,7 +12,6 @@ alias gd="git diff"
 . <(kubectl completion bash)
 alias k='kubectl'
 complete -F __start_kubectl k
-alias kset='kubectl config set-context --current'
-function ns () { kset --namespace=$1; }
+function kns () { kubectl config set-context --current --namespace=$1; }
 export ARGOCD_OPTS='--port-forward-namespace argocd'
 alias a="argocd"

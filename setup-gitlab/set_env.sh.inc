@@ -1,0 +1,2 @@
+MP_HOST=gitlab
+MP_IP=192.168.56.103
