@@ -1,0 +1,1 @@
+Start-Process 'psexec.exe' -Verb RunAs -ArgumentList '-i -s "C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" modifyvm primary --nic2 hostonly --hostonlyadapter2 "VirtualBox Host-Only Ethernet Adapter"'

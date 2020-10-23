@@ -1,0 +1,6 @@
+alias kt="kafka-topics --zookeeper $MP_HOST:2181"
+alias kcp="kafka-console-producer --broker-list $MP_HOST:9092"
+alias kcc="kafka-console-consumer --bootstrap-server $MP_HOST:9092"
+alias kcp-key="kafka-console-producer --broker-list $MP_HOST:9092 --property parse.key=true --property key.separator=,"
+alias kcc-key="kafka-console-consumer --bootstrap-server $MP_HOST:9092 --property print.key=true --property key.separator=,"
+alias kcg="kafka-consumer-groups --bootstrap-server $MP_HOST:9092"

@@ -1,0 +1,2 @@
+MP_HOST=kafka
+MP_IP=192.168.56.101
