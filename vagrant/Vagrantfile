@@ -1,14 +1,14 @@
 Vagrant.configure("2") do |config|
   config.vm.box = "bento/ubuntu-20.04"
-  #config.vm.hostname = "xxx"
+  #config.vm.hostname = "xxxx"
   #config.vm.network "private_network", ip: "x.x.x.x"
   config.vm.synced_folder "#{Dir.home}", "/home/vagrant/Home"
-  #config.vm.provision "bootstrap", type: "shell", path: "xxx.sh", reboot: true
-  #config.vm.provision :reload
-  config.vm.provider "virtualbox" do |vb|
-    vb.memory = "1024"
-    vb.cpus = "2"
-  end
+  config.vm.provision "bootstrap", type: "shell", path: "provision.sh"
+  config.vm.provision :reload
+  #config.vm.provider "virtualbox" do |vb|
+  #  vb.memory = "1024"
+  #  vb.cpus = "2"
+  #end
   if Vagrant.has_plugin?("vagrant-proxyconf")
     config.proxy.http     = "http://www-proxy.visana.ch:8080"
     config.proxy.https    = "http://www-proxy.visana.ch:8080"

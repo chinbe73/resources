@@ -12,6 +12,7 @@ oc completion bash > /etc/profile.d/oc_completion.sh
 cat | sudo -u vagrant bash <<'EOF1'
 # Link folders
 ln -s ~/Home/git ~/git
+ln -s ~/Home/.gitconfig ~/.gitconfig
 ln -s ~/Home/.kube ~/.kube
 # Add Windows users ssh public key to authorized_keys
 if [ -f ~/Home/.ssh/id_rsa.pub ]; then cat ~/Home/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys; fi
@@ -19,7 +20,7 @@ if [ -f ~/Home/.ssh/id_rsa.pub ]; then cat ~/Home/.ssh/id_rsa.pub >> ~/.ssh/auth
 dircolors -p | sed "s/^STICKY_OTHER_WRITABLE 30\;42/STICKY_OTHER_WRITABLE 30\;44/;s/^OTHER_WRITABLE 34\;42/OTHER_WRITABLE 34\;40/" > ~/.dircolors
 # Disable welcome message
 touch ~/.hushlogin
-# Create bash_aliases (aliases, functions and more)
+# Create .bash_aliases (aliases, functions and more)
 cat > ~/.bash_aliases <<'EOF2'
 alias k='kubectl'
 alias wd='if [ -f ~/Home/.workdir ]; then cd $(cat ~/Home/.workdir | sed s@~@$HOME@); fi'
