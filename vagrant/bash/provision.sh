@@ -1,9 +1,7 @@
-# Upgrade and install common
-apt update && apt upgrade -y && apt install -y apt-transport-https bash-completion net-tools
-# Install kubectl
+# Install kubectl and more
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | tee -a /etc/apt/sources.list.d/kubernetes.list
-apt update && apt install -y kubectl
+apt update && apt install -y apt-transport-https bash-completion net-tools kubectl
 kubectl completion bash > /etc/profile.d/kubectl_completion.sh
 # Install oc
 curl -Lso /dev/stdout https://github.com/openshift/okd/releases/download/4.5.0-0.okd-2020-10-15-235428/openshift-client-linux-4.5.0-0.okd-2020-10-15-235428.tar.gz | tar xz -C /usr/bin oc
@@ -12,9 +10,13 @@ oc completion bash > /etc/profile.d/oc_completion.sh
 cat | sudo -u vagrant bash <<'EOF1'
 # Link folders
 ln -s ~/Home/git ~/git
-ln -s ~/Home/.gitconfig ~/.gitconfig
 ln -s ~/Home/.kube ~/.kube
-# Add Windows users ssh public key to authorized_keys
+# Configure Git
+for name in core.autocrlf core.longpaths push.default user.email user.name; do
+  if [ "\$(git config -f ~/Home/.gitconfig --get \$name)" ]; then git config --global \$name "\$(git config -f ~/Home/.gitconfig --get \$name)"; fi
+done
+git config --global credential.helper store
+# Add ssh public key of Windows user to authorized_keys
 if [ -f ~/Home/.ssh/id_rsa.pub ]; then cat ~/Home/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys; fi
 # Disable background color for other-writable folders
 dircolors -p | sed "s/^STICKY_OTHER_WRITABLE 30\;42/STICKY_OTHER_WRITABLE 30\;44/;s/^OTHER_WRITABLE 34\;42/OTHER_WRITABLE 34\;40/" > ~/.dircolors
